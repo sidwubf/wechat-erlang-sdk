@@ -73,7 +73,7 @@ Error Code   | Error message
 45006        | image url over limit
 45007        | audio time over limit
 45008        | graphic message over limit
-45009        | api request over limit
+45009        | api request out of limit
 45010        | submenu over limit
 45015        | reply time over limit
 45016        | system group, not allow to change
