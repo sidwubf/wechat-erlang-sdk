@@ -6,7 +6,6 @@
   {applications, [
                   kernel,
                   stdlib,
-                  lhttpc,
                   gun
                  ]},
   {mod, { wechat_app, []}},
