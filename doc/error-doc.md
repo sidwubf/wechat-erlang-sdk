@@ -1,10 +1,4 @@
-# Wechat API
- ![Wechat icon](https://s1.mzstatic.com/us/r30/Purple5/v4/3a/48/23/3a482393-3d44-6b70-b387-95d9034b2c84/mzl.zmhbaqco.175x175-75.jpg)
- 
- 
- 
- 
-## Global Error Code
+# Global Error Code
 
     {"errcode":40013,"errmsg":"invalid appid"}
 
@@ -12,13 +6,13 @@ Error Code   | Error message
 ------------ | -------------
 -1           | System Busy 
 0            | Success 
-40001        | 获取access_token时AppSecret错误，或者access_token无效
-40002        |	不合法的凭证类型
-40003        |	不合法的OpenID
-40004        |	不合法的媒体文件类型
-40005        |	不合法的文件类型
-40006        |	不合法的文件大小
-40007        |	不合法的媒体文件id
+40001        | AppSecret error when get access_token or access_token Invalid
+40002        | Invalid 	凭证类型
+40003        | Invalid OpenID
+40004        | Invalid media file type
+40005        | Invalid file type
+40006        | Invalid file size
+40007        | Invalid media file id
 40008        |	不合法的消息类型
 40009        |	不合法的图片文件大小
 40010        |	不合法的语音文件大小
