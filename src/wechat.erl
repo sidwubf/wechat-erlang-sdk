@@ -1,10 +1,21 @@
 -module(wechat).
 
+-export([get_access_token/2]).
 -export([send_text_message/3]).
 
 -include("include/wechat.hrl").
 
--send_text_message(AccessToken, OpenID, Content) ->
+get_access_token(AppID, Secret) ->
+    get_access_token(AppID, Secret, "client_credential").
+
+get_access_token(AppID, Secret, GrantType) ->
+    {ok, Pid} = gun:open(?WECHAT_API_URI, 443),
+    Path = "/cgi-bin/token?grant_type="++GrantType++"&appid="++AppID++"&secret="++Secret,
+    StreamRef = gun:get(Pid, Path),
+    gun:close(Pid),
+    StreamRef.
+
+send_text_message(AccessToken, OpenID, Content) ->
     {ok, Pid} = gun:open(?WECHAT_API_URI, 443),
     Path = "/cgi-bin/message/custom/send?access_token=" ++ AccessToken,
     Headers = [
