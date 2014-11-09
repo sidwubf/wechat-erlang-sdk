@@ -28,5 +28,6 @@ send_text_message(AccessToken, OpenID, Content) ->
               ],
     Body = "{\"touser\":\""++OpenID++"\",\"msgtype\":\"text\",\"text\":{\"content\":\""++Content++"\"}}",
     StreamRef = gun:post(Pid, Path, Headers, Body),
-    gun:close(Pid).
+    gun:close(Pid),
+    StreamRef.
 
