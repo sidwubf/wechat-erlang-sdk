@@ -1,9 +1,17 @@
--module(wechat_sdk).
+-module(wechat).
+
+-export([start/0, stop/0]).
 
 -export([get_access_token/2]).
 -export([send_text_message/3]).
 
 -include("include/wechat.hrl").
+
+start() ->
+    ok.
+
+stop() ->
+    ok.
 
 get_access_token(AppID, Secret) ->
     get_access_token(AppID, Secret, "client_credential").
@@ -11,9 +19,13 @@ get_access_token(AppID, Secret) ->
 get_access_token(AppID, Secret, GrantType) ->
     {ok, Pid} = gun:open(?WECHAT_API_URI, 443),
     Path = "/cgi-bin/token?grant_type="++GrantType++"&appid="++AppID++"&secret="++Secret,
-    StreamRef = gun:get(Pid, Path),
-    gun:close(Pid),
-    StreamRef.
+    Ref = gun:get(Pid, Path),
+    receive
+		{gun_response, Pid, Ref, nofin, Status, Headers} ->
+            [Pid, Ref, Status, Headers]
+	after 5000 ->
+		error(timeout)
+	end.
 
 send_text_message(AccessToken, OpenID, Content) ->
     {ok, Pid} = gun:open(?WECHAT_API_URI, 443),
@@ -31,3 +43,17 @@ send_text_message(AccessToken, OpenID, Content) ->
     gun:close(Pid),
     StreamRef.
 
+to_string(Binary) when is_binary(Binary) ->
+    binary_to_list(Binary);
+to_string(Integer) when is_integer(Integer) ->
+    integer_to_list(Integer);
+to_string(Float) when is_float(Float) ->
+    float_to_list(Float);
+to_string(Atom) when Atom =:= undefined; Atom =:= null ->
+    "";
+to_string(Atom) when is_atom(Atom) ->
+    atom_to_list(Atom);
+to_string({{Year, Month, Day}, {Hour, Min, Sec}}) ->
+    lists:flatten(io_lib:format("~.04w-~.02w-~.02wT~.02w:~.02w:~.02wZ", [Year, Month, Day, Hour, Min, Sec]));
+to_string(String) ->
+    String.
