@@ -5,6 +5,4 @@ wechat-erlang-sdk
 
 todo:
 
-- Make a API documentation in English
-
 - relx
