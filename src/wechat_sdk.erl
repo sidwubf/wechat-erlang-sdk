@@ -1,4 +1,4 @@
--module(wechat).
+-module(wechat_sdk).
 
 -export([get_access_token/2]).
 -export([send_text_message/3]).
