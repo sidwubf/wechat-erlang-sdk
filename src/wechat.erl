@@ -1,20 +1,25 @@
 -module(wechat).
 
--export([start/0, stop/0]).
-
 -export([get_access_token/2]).
--export([send_text_message/3]).
+-export([send_message/4]).
 
 -include("include/wechat.hrl").
 
-start() ->
-    ok.
-
-stop() ->
-    ok.
-
 get_access_token(AppID, Secret) ->
     get_access_token(AppID, Secret, "client_credential").
+
+send_message(text, AccessToken, OpenID, Content) ->
+    send_text_message(AccessToken, OpenID, Content);
+send_message(image, AccessToken, OpenID, Content) ->
+    ok;
+send_message(voice, AccessToken, OpenID, Content) ->
+    ok;
+send_message(video, AccessToken, OpenID, Content) ->
+    ok;
+send_message(musice, AccessToken, OpenID, Content) ->
+    ok;
+send_message(news, AccessToken, OpenID, Content) ->
+    ok.
 
 get_access_token(AppID, Secret, GrantType) ->
     {ok, Pid} = gun:open(?WECHAT_API_URI, 443),
@@ -39,21 +44,11 @@ send_text_message(AccessToken, OpenID, Content) ->
                {"content-type", "application/x-www-form-urlencoded; charset=UTF-8"}
               ],
     Body = "{\"touser\":\""++OpenID++"\",\"msgtype\":\"text\",\"text\":{\"content\":\""++Content++"\"}}",
-    StreamRef = gun:post(Pid, Path, Headers, Body),
-    gun:close(Pid),
-    StreamRef.
+    Ref = gun:post(Pid, Path, Headers, Body),
+    receive
+		{gun_response, Pid, Ref, nofin, Status, Headers} ->
+            [Pid, Ref, Status, Headers]
+	after 10000 ->
+		error(timeout)
+	end.
 
-to_string(Binary) when is_binary(Binary) ->
-    binary_to_list(Binary);
-to_string(Integer) when is_integer(Integer) ->
-    integer_to_list(Integer);
-to_string(Float) when is_float(Float) ->
-    float_to_list(Float);
-to_string(Atom) when Atom =:= undefined; Atom =:= null ->
-    "";
-to_string(Atom) when is_atom(Atom) ->
-    atom_to_list(Atom);
-to_string({{Year, Month, Day}, {Hour, Min, Sec}}) ->
-    lists:flatten(io_lib:format("~.04w-~.02w-~.02wT~.02w:~.02w:~.02wZ", [Year, Month, Day, Hour, Min, Sec]));
-to_string(String) ->
-    String.
