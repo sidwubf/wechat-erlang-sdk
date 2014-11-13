@@ -20,8 +20,8 @@ init() ->
 
 get_access_token_test() ->
     %init(),
-    %AppID = "",
-    %Secret = "",
+    %AppID = "wxcd697bc41a293252",
+    %Secret = "85d7efb759a43bfdb3c4cf1d63eb7bed",
     %[Pid, Ref, Status, Headers] = wechat:get_access_token(AppID, Secret),
     %ct:print("response ~p ~p", [Status, Headers]),
     %data_loop(Pid, Ref).
@@ -29,8 +29,8 @@ get_access_token_test() ->
 
 send_message_test() ->
     init(),
-    AccessToken = "",
-    OpenID = "",
+    AccessToken = "RpnLPtqfF5CkztaX9KVtd9_eqS3uTwk41ZIpEvw9tbATQZ3wrt9FqAd4i6vXaLkHeF9gv8S8GiJ-piS2FIf6stkPoQgL5jQsIrO316IK-3E",
+    OpenID = "oQcZOuAKaTiRXr6j0XjG00bWrzM4",
     Content = "testtest",
     [Pid, Ref, Status, Headers] = wechat:send_message(text, AccessToken, OpenID, Content),
     ct:print("response ~p ~p", [Status, Headers]),
