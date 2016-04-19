@@ -1,6 +1,8 @@
 可能是目前唯一的微信公众平台Erlang SDK
 =====
 
+交流QQ群：516097937
+
 WeChat Erlang SDK
 
 Build
