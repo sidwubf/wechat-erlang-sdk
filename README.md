@@ -1,7 +1,7 @@
 wechat
 =====
 
-WeChat API SDK
+WeChat Erlang SDK
 
 Build
 -----
