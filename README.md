@@ -12,4 +12,5 @@ Release
 -----
 
     $ rebar3 release
-    or $ rebar3 as prod tar
+    or
+    $ rebar3 as prod tar
