@@ -1,8 +1,15 @@
-wechat-erlang-sdk
-=================
+wechat
+=====
 
-微信公众平台erlang开发包, weixin developer SDK.
+An OTP application
 
-todo:
+Build
+-----
 
-- relx
+    $ rebar3 compile
+
+Release
+-----
+
+    $ rebar3 release
+    or $ rebar3 as prod tar
