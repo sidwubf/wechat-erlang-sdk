@@ -9,4 +9,5 @@ rel/example_project
 test
 .concrete/DEV_MODE
 .rebar
+rebar.lock
 _build/

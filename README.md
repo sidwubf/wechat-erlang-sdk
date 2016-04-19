@@ -1,7 +1,7 @@
 wechat
 =====
 
-An OTP application
+WeChat API SDK
 
 Build
 -----
