@@ -1,4 +1,4 @@
-目前唯一的微信公众平台Erlang SDK
+可能是目前唯一的微信公众平台Erlang SDK
 =====
 
 WeChat Erlang SDK
