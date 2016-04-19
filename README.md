@@ -3,8 +3,6 @@
 
 交流QQ群：516097937
 
-WeChat Erlang SDK
-
 Build
 -----
 
