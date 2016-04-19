@@ -12,7 +12,7 @@ test() ->
     Headers = [{<<"Content-Type">>, <<"application/json">>}],
     Payload = <<>>,
     Options = [],
-    {ok, StatusCode, RespHeaders, ClientRef} = hackney:request(Method, URL, Headers, Payload, Options),
+    {ok, _StatusCode, _RespHeaders, ClientRef} = hackney:request(Method, URL, Headers, Payload, Options),
     {ok, Body} = hackney:body(ClientRef),
     io:fwrite("~p~n", [{Body}]).
 
@@ -22,9 +22,9 @@ test2(AccessToken) ->
     Headers = [{<<"Content-Type">>, <<"application/json">>}],
     Payload = <<>>,
     Options = [],
-    {ok, StatusCode, RespHeaders, ClientRef} = hackney:request(Method, URL, Headers, Payload, Options),
+    {ok, _StatusCode, _RespHeaders, ClientRef} = hackney:request(Method, URL, Headers, Payload, Options),
     {ok, Body} = hackney:body(ClientRef),
     Response = jiffy:decode(Body),
-    [H|T] = element(1, Response),
+    [H|_T] = element(1, Response),
     % {{<<"total">>,5}}
     io:fwrite("~p~n", [{H}]).
