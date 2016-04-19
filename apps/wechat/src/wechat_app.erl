@@ -19,6 +19,7 @@ start(_StartType, _StartArgs) ->
     application:start(public_key),
     application:start(ssl),
     application:start(hackney),
+    application:start(jiffy),
     wechat_sup:start_link().
 
 %%--------------------------------------------------------------------
