@@ -1,6 +1,8 @@
 -module(wechat_menu).
 %自定义菜单
--export([create/2, get/1, delete/1, add_conditional/2]).
+-export([create/2, get/1, delete/1, add_conditional/2, get_info/1]).
+
+-include("include/wechat.hrl").
 
 create(AccessToken, Menu) ->
     URL = list_to_binary(?API_URL_PREFIX ++ "/menu/create?access_token="++AccessToken),
@@ -17,7 +19,7 @@ delete(AccessToken) ->
 
 add_conditional(AccessToken, MenuConditional) ->
     URL = list_to_binary(?API_URL_PREFIX ++ "/menu/addconditional?access_token="++AccessToken),
-    MenuConditionalBinary = list_to_binary(Menu),
+    MenuConditionalBinary = list_to_binary(MenuConditional),
     wechat_util:http_post(URL, MenuConditionalBinary).
 
 get_info(AccessToken) ->
