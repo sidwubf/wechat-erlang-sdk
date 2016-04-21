@@ -11,7 +11,7 @@
 -define(MSGTYPE_NEWS, "news").
 -define(MSGTYPE_VOICE, "voice").
 -define(MSGTYPE_VIDEO, "video").
--define(API_URL_PREFIX, "https://api.weixin.qq.com/cgi-bin").
+-define(API_URL_PREFIX, "https://api.weixin.qq.com").
 -define(AUTH_URL, "/token?grant_type=client_credential&").
 -define(MENU_CREATE_URL, "/menu/create?").
 -define(MENU_GET_URL, "/menu/get?").
